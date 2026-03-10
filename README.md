@@ -1,66 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ☕ Sistem Kasir & Manajemen Meja (Cafe POS)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi Point of Sales (POS) berbasis web yang dirancang khusus untuk efisiensi operasional kafe/restoran, fokus pada manajemen menu, kategori, dan pemantauan status meja secara real-time.
 
-## About Laravel
+## 🛠️ Tech Stack & Arsitektur
+- **Backend:** Laravel 11/12
+- **Frontend:** Blade Templating + **Bootstrap 5** (Migrasi dari Tailwind CSS)
+- **Styling:** Custom SCSS dengan nuansa "Cafe Modern" (Coffee Tones)
+- **Database:** SQLite
+- **Assets Bundler:** Vite
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fitur yang Sudah Selesai Dikerjakan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Fondasi Sistem & UI/UX
+- [x] **Migrasi UI ke Bootstrap 5:** Menghapus total ketergantungan Tailwind CSS untuk kemudahan kustomisasi.
+- [x] **Tema Cafe Modern:** Implementasi palet warna kopi (#3C2A21, #5F4033), font Poppins, dan icon Bootstrap.
+- [x] **Layout Utama (Sidebar):** Navigasi samping yang responsif dengan indikator halaman aktif.
+- [x] **Konfigurasi Vite SCSS:** Pipeline asset yang sudah terkonfigurasi untuk memproses file Sass.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. Manajemen Database & Model
+- [x] **Skema Database Lengkap:** Migrasi untuk tabel `users`, `categories`, `menus`, `tables`, `orders`, dan `order_items`.
+- [x] **Relasi Eloquent:** Semua model (`Category`, `Menu`, `Table`, `Order`, `OrderItem`) sudah memiliki relasi yang tepat.
+- [x] **Auto-Slug:** Generasi slug otomatis untuk kategori menggunakan Laravel Str.
+- [x] **Database Seeder:** Data awal (Admin, Kategori, Menu, & Meja) untuk mempermudah testing.
 
-## Learning Laravel
+### 3. Fitur CRUD (Selesai/On-Progress)
+- [x] **Kategori Menu:** Full CRUD (Tambah, Lihat, Edit, Hapus).
+- [x] **Manajemen Menu:** Backend controller siap, View Daftar Menu (Index) dengan desain modern.
+- [x] **Manajemen Meja:** Backend controller siap, View Visualisasi Meja (Grid System) yang menunjukkan status Tersedia/Terisi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Cara Instalasi
+Jika Anda baru mengunduh atau mereset proyek ini, ikuti langkah berikut:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Install Dependensi PHP:**
+   ```bash
+   composer install
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Install Dependensi Frontend:**
+   ```bash
+   npm install
+   ```
 
-## Laravel Sponsors
+3. **Konfigurasi Database:**
+   Pastikan di file `.env` jalur database sudah absolut (sudah otomatis saya settingkan):
+   ```env
+   DB_CONNECTION=sqlite
+   DB_DATABASE=C:\laragon\www\sistem-kasir\database\database.sqlite
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Migrasi & Seeding:**
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
 
-### Premium Partners
+5. **Jalankan Aplikasi:**
+   ```bash
+   # Terminal 1 (Laravel)
+   php artisan serve
+   
+   # Terminal 2 (Vite Assets)
+   npm run dev
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🔐 Akun Demo (Default Seeder)
+- **Email:** `admin@cafe.com`
+- **Password:** `password`
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📝 Catatan Perbaikan Terakhir
+- Memperbaiki error `Database file does not exist` dengan menggunakan absolute path di `.env`.
+- Membersihkan konflik `PostCSS` akibat sisa konfigurasi Tailwind.
+- Menghapus `welcome.blade.php` dan mengalihkan landing page langsung ke Dashboard/Kategori.

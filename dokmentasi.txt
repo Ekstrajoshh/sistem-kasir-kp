@@ -1,0 +1,89 @@
+================================================================================
+DOKUMENTASI PROJECT REKAYASA PERANGKAT LUNAK (RPL)
+================================================================================
+Judul Project : Rancang Bangun Aplikasi Kasir dan Manajemen Meja untuk Restoran/Kafe
+Framework     : Laravel
+Database      : SQLite
+================================================================================
+
+A. DESKRIPSI APLIKASI
+Sistem Point of Sales (POS) berbasis web yang difokuskan pada efisiensi transaksi 
+kasir dan pemantauan ketersediaan meja restoran secara real-time.
+
+B. WORK BREAKDOWN STRUCTURE (WBS) / JOB TASKS
+1. Fase Perencanaan & Setup Lingkungan
+   - [ ] Instalasi framework Laravel.
+   - [ ] Konfigurasi file .env untuk koneksi database SQLite.
+   - [ ] Setup dependensi UI/UX (Tailwind CSS/Bootstrap).
+
+2. Fase Perancangan Database
+   - [ ] Membuat file Migration (users, categories, menus, tables, orders, order_items).
+   - [ ] Mendefinisikan relasi antar tabel (Eloquent ORM / Foreign Keys).
+   - [ ] Membuat Seeder untuk injeksi data awal (dummy tables & menus).
+
+3. Fase Pengembangan Backend (Logika Bisnis)
+   - [ ] Fitur CRUD Kategori dan Menu.
+   - [ ] Logika pembaruan status meja otomatis (Tersedia <-> Terisi).
+   - [ ] Logika penambahan pesanan ke dalam keranjang (order_items).
+   - [ ] Kalkulasi otomatis total harga transaksi.
+
+4. Fase Pengembangan Frontend (UI/UX Kasir)
+   - [ ] Pembuatan Layout Utama Dashboard (Sidebar, Konten Utama).
+   - [ ] Halaman Interaktif Pemilihan Meja.
+   - [ ] Halaman Transaksi Kasir (Katalog Menu, Keranjang Pesanan).
+
+5. Fase Testing & Dokumentasi
+   - [ ] Pengujian alur transaksi end-to-end (Black-box testing).
+   - [ ] Pengujian validasi form dan penanganan error.
+   - [ ] Penyusunan laporan akhir project.
+
+C. DAFTAR FITUR APLIKASI (REQUIREMENTS)
+1. Manajemen Kategori & Menu: Tambah, ubah, hapus, dan atur status stok menu.
+2. Manajemen Meja: Visualisasi status meja (Tersedia, Terisi, Dipesan).
+3. Transaksi Kasir (POS): Modul utama untuk melayani pesanan pelanggan dari meja tertentu.
+4. Proses Pembayaran: Konfirmasi pembayaran yang otomatis memperbarui status tagihan dan mengosongkan kembali meja.
+
+D. SKEMA DATABASE (TABEL & KOLOM)
+1. users (Kasir/Admin)
+   -> id (PK), name, email, password, timestamps
+
+2. categories (Kategori Menu)
+   -> id (PK), name, slug, timestamps
+
+3. menus (Data Menu Kafe)
+   -> id (PK), category_id (FK), name, description, price, image, is_available, timestamps
+
+4. tables (Data Meja)
+   -> id (PK), table_number, capacity, status (available/occupied), timestamps
+
+5. orders (Header Transaksi)
+   -> id (PK), user_id (FK), table_id (FK), customer_name, total_price, status (pending/paid), timestamps
+
+6. order_items (Detail Item Pesanan)
+   -> id (PK), order_id (FK), menu_id (FK), quantity, price, subtotal, timestamps
+================================================================================
+
+E. HAK AKSES PENGGUNA (USER ROLES & USE CASE)
+1. Role: Admin / Manajer
+   - Memiliki akses penuh ke seluruh sistem.
+   - Mengelola master data (Kategori, Menu, Meja).
+   - Melihat riwayat transaksi atau laporan pendapatan.
+   - Mengelola akun kasir/karyawan.
+
+2. Role: Kasir / Pelayan
+   - Akses terbatas pada operasional harian.
+   - Mengubah status meja (Check-in tamu).
+   - Menginput pesanan pelanggan (Point of Sales).
+   - Memproses pembayaran dan mencetak struk/bill.
+
+F. KEBUTUHAN NON-FUNGSIONAL (NON-FUNCTIONAL REQUIREMENTS)
+1. Keamanan (Security): Sistem harus dilengkapi fitur autentikasi (Login/Logout) dan password yang dienkripsi menggunakan standar Hash Laravel.
+2. Kinerja (Performance): Transisi pembaruan status meja harus berjalan cepat tanpa delay agar operasional kafe tidak terhambat.
+3. Usability: Antarmuka kasir harus dirancang se-intuitif mungkin (minim klik) agar pelayan bisa menginput pesanan dengan sangat cepat.
+4. Responsibilitas: Layout bisa diakses dengan baik melalui layar sentuh (tablet) maupun desktop PC di meja kasir.
+
+G. TECH STACK (TEKNOLOGI YANG DIGUNAKAN)
+- Bahasa Pemrograman : PHP 8.x
+- Framework Backend   : Laravel 11/12
+- Database            : SQLite (untuk tahap development)
+- Frontend            : Blade Templating Engine + Tailwind CSS / Bootstrap
